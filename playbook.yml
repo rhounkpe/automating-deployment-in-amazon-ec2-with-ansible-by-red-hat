@@ -56,3 +56,23 @@
     - name: Display the ansibleVPC_IGW output
       debug:
         var: ansibleVPC_IGW
+    
+    - name: Create a route table
+      ec2_vpc_route_table:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: "{{ aws_region }}"
+        state: present
+        vpc_id: "{{ ansibleVPC.vpc.id }}"
+        tags:
+          Name: rt_ansibleVPC_PublicSubnet
+        subnets:
+          - "{{ public_subnet.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0
+            gateway_id: "{{ ansibleVPC_IGW.gateway.id }}"
+      register: rt_ansibleVPC_PublicSubnet
+    
+    - name: Display the rt_ansibleVPC_PublicSubnet output
+      debug:
+        var: rt_ansibleVPC_PublicSubnet
