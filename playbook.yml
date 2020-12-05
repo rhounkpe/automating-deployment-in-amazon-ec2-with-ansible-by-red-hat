@@ -5,7 +5,7 @@
 
   vars_files:
     - AWS-VPC/vars/info.yml
-  
+
   tasks:
     - name: Create a VPC
       ec2_vpc_net:
@@ -18,11 +18,10 @@
           module: ec2_vpc_net
         tenancy: default
       register: ansibleVPC
-    
+
     - name: Display the ansibleVPC output
       debug:
         var: ansibleVPC
-    
 
     - name: Create a subnet
       ec2_vpc_subnet:
@@ -36,11 +35,11 @@
         tags:
           Name: public_subnet
       register: public_subnet
-    
+
     - name: Display the public_subnet output
       debug:
         var: public_subnet
-    
+
     - name: Create an Internet Gateway
       ec2_vpc_igw:
         aws_access_key: "{{ aws_id }}"
@@ -51,7 +50,6 @@
         tags:
           Name: ansibleVPC_IGW
       register: ansibleVPC_IGW
-
 
     - name: Display the ansibleVPC_IGW output
       debug:
@@ -72,7 +70,7 @@
           - dest: 0.0.0.0
             gateway_id: "{{ ansibleVPC_IGW.gateway.id }}"
       register: rt_ansibleVPC_PublicSubnet
-    
+
     - name: Display the rt_ansibleVPC_PublicSubnet output
       debug:
         var: rt_ansibleVPC_PublicSubnet
