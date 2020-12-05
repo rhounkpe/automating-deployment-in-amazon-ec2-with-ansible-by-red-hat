@@ -15,10 +15,10 @@ Learn how to automate creation and provisioning of Amazon Elastic Compute Cloud 
 #### Installing Ansible on the Control Node
 - The control node requires the installation of several pakages.
 - The following example assumes that we are installing Ansible with pip on a Centos or Red Hat Enterprise Linux based system:
-1- Use the following command to install pip (Python Package Manager):
-$ sudo yum install python3-pip
-2- Use pip to install Ansible 2.9 and the AWS module dependencies.
-$ sudo pip3 install ansible boto boto3
+1. Use the following command to install pip (Python Package Manager):
+    - $ sudo yum install python3-pip
+2. Use pip to install Ansible 2.9 and the AWS module dependencies.
+    - $ sudo pip3 install ansible boto boto3
 
 
 ### Create an AWS identity and Access Management (IAM) user and its access keys for use by Ansible
@@ -31,12 +31,10 @@ $ sudo pip3 install ansible boto boto3
 ### Create AWS User and Retain the Access Key and Secret Key
 - Creating a new user is the first step in managing a new deployment for an account.
 - Sign in to the AWS Management Console and open the IAM console.
-
-
-User name: redhatuser
-Group: redhatgroup
-Group attached policies: AmazoneEC2FullAccess and AmazoneVPCFullAccess
-AWS access type: 'Programmatic access and AWS Management Console access' and 'Console password type'
+    - User name: redhatuser
+    - Group: redhatgroup
+    - Group attached policies: AmazoneEC2FullAccess and AmazoneVPCFullAccess
+    - AWS access type: 'Programmatic access and AWS Management Console access' and 'Console password type'
 
 ### The AWS Access and Secret Access Keys
 - Download the .csv file. This is the only opportunity to save this file.
@@ -46,13 +44,13 @@ AWS access type: 'Programmatic access and AWS Management Console access' and 'Co
 ### Providing Authentication Data to Ansible as Variables
 - When we have the access keys, we can prepare a variable file to store our plays.
 - Some examples of data is helpful to store as variables:
--- AWS user id
--- AWS secret key
--- AWS SSH Key name
--- AWS region selection
+    - AWS user id
+    - AWS secret key
+    - AWS SSH Key name
+    - AWS region selection
 
 - For better security, use ansible-vault to encrypt the variable files containing your authentication secrets.
--- ansible-vault encrypt vars/info.yml
+    - ansible-vault encrypt vars/info.yml
 
 ### Creating a variable file containing Access Keys
 The following example outlines one way to provide access keys as variables to a play:
