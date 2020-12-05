@@ -67,8 +67,8 @@
         subnets:
           - "{{ public_subnet.subnet.id }}"
         routes:
-          - dest: 0.0.0.0
-            gateway_id: "{{ ansibleVPC_IGW.gateway_id }}"
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ ansibleVPC_IGW.gateway.id }}"
       register: rt_ansibleVPC_PublicSubnet
     
     - name: Display the rt_ansibleVPC_PublicSubnet output
