@@ -56,7 +56,7 @@
     - name: Display the ansibleVPC_IGW output
       debug:
         var: ansibleVPC_IGW
-    
+
     - name: Create a route table
       ec2_vpc_route_table:
         aws_access_key: "{{ aws_id }}"
