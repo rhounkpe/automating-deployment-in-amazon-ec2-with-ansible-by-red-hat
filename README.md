@@ -1,1 +1,2 @@
-# automating-deployment-in-amazon-ec2-with-ansible-by-red-hat
+# Automating Deployment in Amazon EC2 with Ansible
+## By Red Hat
