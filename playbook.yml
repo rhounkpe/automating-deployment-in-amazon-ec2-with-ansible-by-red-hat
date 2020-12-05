@@ -7,7 +7,7 @@
     - AWS-VPC/vars/info.yml
   
   tasks:
-    - name: create a VPC
+    - name: Create a VPC
       ec2_vpc_net:
         aws_access_key: "{{ aws_id }}"
         aws_secret_key: "{{ aws_key }}"
@@ -22,3 +22,21 @@
     - name: Display the ansibleVPC output
       debug:
         var: ansibleVPC
+    
+
+    - name: Create a subnet
+      ec2_vpc_subnet:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: "{{ aws_region }}"
+        state: present
+        cidr: 10.0.0.0/16
+        vpc_id: "{{ ansibleVPC.vpc.id }}"
+        map_public: yes
+        tags:
+          Name: public_subnet
+      register: public_subnet
+    
+    - name: Display the public_subnet output
+      debug:
+        var: public_subnet
